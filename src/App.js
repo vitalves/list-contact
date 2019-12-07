@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Routes from './routes';
+import Container from './components/Container';
 
 function App() {
-  return <Routes />;
+  return <Container />;
 }
 
 export default App;

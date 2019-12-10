@@ -36,7 +36,7 @@ export default createGlobalStyle`
   a {
     color: #1985AA;
     text-decoration: none;
-    opacity: 0.95;
+    opacity: 0.90;
     &:hover { opacity: 1; }
   }
   ul {

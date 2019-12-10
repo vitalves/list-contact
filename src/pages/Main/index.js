@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MdContacts } from 'react-icons/md';
+import { MdContacts, MdPersonAdd } from 'react-icons/md';
 
 import api from '../../services/api';
 
-import { Container, TableList, Thead, Tbody } from './styles';
+import { Container, Nav, TableList, Thead, Tbody } from './styles';
 
 export default function Main() {
   document.title = 'Lista de contatos';
@@ -33,13 +33,22 @@ export default function Main() {
 
   return (
     <Container>
-      <h1>
-        <MdContacts color="rgb(25, 139, 106, .9)" size={30} />
-        Contatos
-      </h1>
+      <Nav>
+        <h1>
+          <MdContacts color="#1A8E6E" size={22} />
+          Contatos
+        </h1>
+
+        <Link to="/contact/add">
+          <MdPersonAdd color="#FFF" size={16} />
+          Adicionar
+        </Link>
+      </Nav>
+
       <TableList>
         <Thead>
           <tr>
+            <th>#</th>
             <th>Nome</th>
             <th>Email</th>
             <th>Gênero</th>
@@ -53,9 +62,18 @@ export default function Main() {
             <tr key={contact.id}>
               <td>
                 <img src={contact.avatar} alt={contact.first_name} />
-                {`${contact.first_name} ${contact.last_name}`}
               </td>
-              <td>{contact.email}</td>
+              <td>{`${contact.first_name} ${contact.last_name}`}</td>
+              <td>
+                <a
+                  href={`mailto:${contact.email}?Subject=${contact.first_name}, esse contato é importante`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Enviar email"
+                >
+                  {contact.email}
+                </a>
+              </td>
               <td>{contact.gender === 'F' ? 'Feminino' : 'Masculino'}</td>
               <td>{contact.language}</td>
               <td>

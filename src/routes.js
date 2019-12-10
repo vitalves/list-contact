@@ -1,9 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import Header from './components/Header';
 import Main from './pages/Main';
 import Contact from './pages/Contact';
-import Header from './components/Header';
+import ContactAdd from './pages/Contact/Add';
+import ContactEdit from './pages/Contact/Edit';
+import ErroNotFound from './pages/error';
 
 export default function Routes() {
   return (
@@ -11,9 +14,11 @@ export default function Routes() {
       <Header />
       <Switch>
         <Route path="/" exact component={Main} />
-        <Route path="/contact" component={Contact} />
+        <Route path="/contact" exact component={Contact} />
+        <Route path="/contact/add" component={ContactAdd} />
+        <Route path="/contact/edit/:id" component={ContactEdit} />
 
-        <Route path="/" component={() => <h1>Erro 404 ;( </h1>} />
+        <Route path="/" component={ErroNotFound} />
       </Switch>
     </BrowserRouter>
   );

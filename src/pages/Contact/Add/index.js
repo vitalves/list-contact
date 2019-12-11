@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MdPersonAdd, MdArrowBack } from 'react-icons/md';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { Form, Input } from '@rocketseat/unform';
+import { Form, Input, Select } from '@rocketseat/unform';
 import * as Yup from 'yup';
+import history from '../../../services/history';
 
 // import api from '../../../services/api';
 
@@ -12,20 +15,23 @@ import { Container, Nav, Section } from './styles';
 const schema = Yup.object().shape({
   first_name: Yup.string()
     .trim()
-    .min(2, 'Digite seu nome corretamente')
-    .required('Por favor, digite seu nome'),
+    .min(2, 'Digite o nome corretamente')
+    .required('Por favor, digite o nome'),
   last_name: Yup.string()
     .trim()
-    .min(3, 'Por favor, digite seu sobrenome corretamente')
-    .required('Por favor, digite seu sobrenome'),
+    .min(3, 'Por favor, digite o sobrenome corretamente')
+    .required('Por favor, digite sobrenome'),
   email: Yup.string()
     .trim()
     .email('Digite um email válido')
-    .required('Por favor, digite seu email'),
+    .required('Por favor, digite o email'),
+  gender: Yup.string()
+    .trim()
+    .required('Por favor, selecione o gênero'),
   language: Yup.string()
     .trim()
-    .min(2, 'Por favor, digite seu idioma corretamente')
-    .required('Por favor, digite seu idioma'),
+    .min(2, 'Por favor, digite o idioma corretamente')
+    .required('Por favor, informe o idioma'),
   birthday: Yup.string()
     .min(5, 'Por favor, digite a data corretamente')
     .max(
@@ -36,26 +42,52 @@ const schema = Yup.object().shape({
     ),
 });
 
-export default function ContactAdd() {
-  const [contact, setContact] = useState([]);
+const optionsGender = [
+  { value: 'M', title: 'Masculinho' },
+  { value: 'F', title: 'Feminino' },
+];
 
+export default function ContactAdd() {
   useEffect(() => {
     document.title = 'Adicionar contato';
-
-    const storageContacts = localStorage.getItem('contacts');
-
-    if (storageContacts) {
-      setContact(JSON.parse(storageContacts));
-
-      // console.log(JSON.parse(storageContacts));
-    }
   }, []);
 
   function handleSubmit(data) {
-    setContact({ contact, ...data });
-  }
+    console.log(data);
 
-  console.log(contact);
+    try {
+      const contactList = JSON.parse(localStorage.getItem('contacts'));
+
+      data.avatar = `https://robohash.org/${data.last_name}.png?size=100x100&set=set1`; // eslint-disable-line
+
+      if (contactList) {
+        data.id = Number(contactList.length + 1); // eslint-disable-line
+
+        localStorage.setItem(
+          'contacts',
+          JSON.stringify([data, ...contactList])
+        );
+      } else {
+        data.id = 1; // eslint-disable-line
+        localStorage.setItem('contacts', JSON.stringify([data]));
+      }
+
+      toast.success('Cadastro realizado com sucesso', {
+        position: 'top-center',
+        autoClose: 3000,
+      });
+
+      history.push('/');
+    } catch (error) {
+      toast.error(
+        'Falha ao realizar o cadastro, verifique os dados e tente novamente',
+        {
+          position: 'top-center',
+          autoClose: 3000,
+        }
+      );
+    }
+  }
 
   return (
     <Container>
@@ -77,32 +109,37 @@ export default function ContactAdd() {
             type="text"
             name="first_name"
             id="first_name"
-            placeholder="Digite seu Nome"
+            placeholder="Digite nome"
           />
           <Input
             type="text"
             name="last_name"
             id="last_name"
-            placeholder="Digite seu Sobrenome"
+            placeholder="Digite o sobrenome"
           />
           <Input
             type="email"
             name="email"
             id="email"
-            placeholder="Digite seu  Email"
+            placeholder="Digite o email"
           />
-          <Input type="gender" name="gender" id="gender" placeholder="gender" />
+          <Select
+            options={optionsGender}
+            name="gender"
+            id="gender"
+            placeholder="Selecione o gênero"
+          />
           <Input
-            type="language"
+            type="text"
             name="language"
             id="language"
-            placeholder="Informe seu Idioma"
+            placeholder="Informe o idioma"
           />
           <Input
-            type="birthday"
+            type="date"
             name="birthday"
             id="birthday"
-            placeholder="AAAA-MM-DD"
+            placeholder="dd/mm/yyyy"
           />
 
           <button type="submit"> Cadastrar </button>

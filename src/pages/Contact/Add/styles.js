@@ -67,7 +67,8 @@ export const Section = styled.section`
   }
 
   input,
-  button {
+  button,
+  select {
     width: calc(100% - 40px);
     background: rgba(26, 143, 110, 0.1);
     color: rgb(26, 143, 110);

@@ -22,7 +22,7 @@ export default createGlobalStyle`
     background: linear-gradient(0deg, #eee, #fff);
     -webkit-font-smoothing: antialiased !important;
   }
-  body, input, button {
+  body, input, select, button {
     color: #555;
     font-size: 14px;
     font-family: Roboto, sans-serif;

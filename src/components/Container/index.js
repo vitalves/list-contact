@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 
 import { Wrapper } from './styles';
 
@@ -10,6 +11,7 @@ export default function Container() {
     <Wrapper>
       <Routes />
       <GlobalStyle />
+      <ToastContainer />
     </Wrapper>
   );
 }

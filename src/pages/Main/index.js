@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MdContacts, MdPersonAdd } from 'react-icons/md';
+import { MdContacts, MdPersonAdd, MdPermContactCalendar } from 'react-icons/md';
+import { FaUserEdit } from 'react-icons/fa';
 
 import api from '../../services/api';
 
@@ -76,7 +77,11 @@ export default function Main() {
                   {contact.email}
                 </a>
               </td>
-              <td>{contact.gender === 'F' ? 'Feminino' : 'Masculino'}</td>
+              <td>
+                {contact.gender === 'F' || contact.gender === 'Feminino'
+                  ? 'Feminino'
+                  : 'Masculino'}
+              </td>
               <td>{contact.language}</td>
               <td>
                 {contact.birthday
@@ -86,8 +91,15 @@ export default function Main() {
                   .join('/')}
               </td>
               <td>
-                <Link to="/" title="ver contato">
-                  Detalhes
+                <Link to={`/contact/edit/${contact.id}`} title="editar contato">
+                  <FaUserEdit size={20} />
+                </Link>
+                <Link
+                  to="/errr"
+                  title="Visualizar contato"
+                  style={{ marginLeft: '15px' }}
+                >
+                  <MdPermContactCalendar size={20} />
                 </Link>
               </td>
             </tr>

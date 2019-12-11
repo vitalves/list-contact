@@ -1,5 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Router, Route } from 'react-router-dom';
+
+// import { Router } from 'react-router-dom';
+import history from './services/history';
 
 import Header from './components/Header';
 import Main from './pages/Main';
@@ -11,15 +14,17 @@ import ErroNotFound from './pages/error';
 export default function Routes() {
   return (
     <BrowserRouter>
-      <Header />
-      <Switch>
-        <Route path="/" exact component={Main} />
-        <Route path="/contact" exact component={Contact} />
-        <Route path="/contact/add" component={ContactAdd} />
-        <Route path="/contact/edit/:id" component={ContactEdit} />
+      <Router history={history}>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Main} />
+          <Route path="/contact" exact component={Contact} />
+          <Route path="/contact/add" component={ContactAdd} />
+          <Route path="/contact/edit/:id" component={ContactEdit} />
 
-        <Route path="/" component={ErroNotFound} />
-      </Switch>
+          <Route path="/" component={ErroNotFound} />
+        </Switch>
+      </Router>
     </BrowserRouter>
   );
 }

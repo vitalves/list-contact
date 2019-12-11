@@ -30,7 +30,7 @@ export const Nav = styled.nav`
   }
 
   a {
-    background: #1a8e6e;
+    background: linear-gradient(0deg, #1a8e49, #1a8e6e);
     color: #fff;
     padding: 8px 12px;
     border-radius: 4px;
@@ -45,5 +45,49 @@ export const Nav = styled.nav`
     &:hover {
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
+  }
+`;
+
+export const Section = styled.section`
+  width: 100%;
+  padding: 15px 5px 30px;
+  border-radius: 4px;
+  background: #fafafa;
+
+  form {
+    background: #fff;
+    padding: 15px 5px 30px;
+    border-radius: 4px;
+
+    span {
+      color: #fb6f91;
+      font-size: 12px;
+      margin-left: 20px;
+    }
+  }
+
+  input,
+  button {
+    width: calc(100% - 40px);
+    background: rgba(26, 143, 110, 0.1);
+    color: rgb(26, 143, 110);
+    padding: 15px 15px;
+    margin: 30px 20px 0;
+    border-radius: 4px;
+
+    display: flex;
+    flex-direction: column;
+
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  button {
+    /* background: rgb(26, 143, 110); */
+    background: linear-gradient(0deg, #1a8e49, #1a8e6e);
+    color: #fff;
+    font-weight: bolder;
+    text-transform: uppercase;
   }
 `;

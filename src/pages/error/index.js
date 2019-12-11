@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MdError, MdArrowBack } from 'react-icons/md';
 
@@ -9,7 +9,9 @@ import Error404 from '../../assets/error404.png';
 import { Container, Nav } from './styles';
 
 export default function ErroNotFound() {
-  document.title = 'ERROR 404 - PAGE NOT FOUND';
+  useEffect(() => {
+    document.title = 'ERROR 404 - PAGE NOT FOUND';
+  }, []);
 
   return (
     <Container>

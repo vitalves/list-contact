@@ -30,7 +30,7 @@ export const Nav = styled.nav`
   }
 
   a {
-    background: #1a8e6e;
+    background: linear-gradient(0deg, #1a8e49, #1a8e6e);
     color: #fff;
     padding: 8px 12px;
     border-radius: 4px;

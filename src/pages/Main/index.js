@@ -7,7 +7,9 @@ import api from '../../services/api';
 import { Container, Nav, TableList, Thead, Tbody } from './styles';
 
 export default function Main() {
-  document.title = 'Lista de contatos';
+  useEffect(() => {
+    document.title = 'Lista de contatos';
+  }, []);
 
   const [contacts, setContacts] = useState([]);
 
@@ -41,7 +43,7 @@ export default function Main() {
 
         <Link to="/contact/add">
           <MdPersonAdd color="#FFF" size={16} />
-          Adicionar
+          Adicionar contato
         </Link>
       </Nav>
 

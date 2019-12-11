@@ -31,12 +31,14 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
     opacity: 0.9;
+    transition: opacity 0.3s;
     &:hover { opacity: 1; }
   }
   a {
     color: #1985AA;
     text-decoration: none;
     opacity: 0.90;
+    transition: opacity 0.3s;
     &:hover { opacity: 1; }
   }
   ul {

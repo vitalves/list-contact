@@ -6,7 +6,7 @@ import history from './services/history';
 
 import Header from './components/Header';
 import Main from './pages/Main';
-import Contact from './pages/Contact';
+import Contact from './pages/Contact/View';
 import ContactAdd from './pages/Contact/Add';
 import ContactEdit from './pages/Contact/Edit';
 import ErroNotFound from './pages/error';

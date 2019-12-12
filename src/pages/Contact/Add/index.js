@@ -43,8 +43,8 @@ const schema = Yup.object().shape({
 });
 
 const optionsGender = [
-  { value: 'M', title: 'Masculinho' },
-  { value: 'F', title: 'Feminino' },
+  { id: '1', value: 'M', title: 'Masculinho' },
+  { id: '2', value: 'F', title: 'Feminino' },
 ];
 
 export default function ContactAdd() {

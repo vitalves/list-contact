@@ -43,8 +43,8 @@ const schema = Yup.object().shape({
 });
 
 const optionsGender = [
-  { id: '1', value: 'M', title: 'Masculinho' },
-  { id: '2', value: 'F', title: 'Feminino' },
+  { id: 'M', title: 'Masculinho' },
+  { id: 'F', title: 'Feminino' },
 ];
 
 export default function ContactAdd() {
@@ -53,8 +53,6 @@ export default function ContactAdd() {
   }, []);
 
   function handleSubmit(data) {
-    console.log(data);
-
     try {
       const contactList = JSON.parse(localStorage.getItem('contacts'));
 

@@ -77,11 +77,7 @@ export default function Main() {
                   {contact.email}
                 </a>
               </td>
-              <td>
-                {contact.gender === 'F' || contact.gender === 'Feminino'
-                  ? 'Feminino'
-                  : 'Masculino'}
-              </td>
+              <td>{contact.gender === 'F' ? 'Feminino' : 'Masculino'}</td>
               <td>{contact.language}</td>
               <td>
                 {contact.birthday

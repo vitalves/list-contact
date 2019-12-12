@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { MdArrowBack } from 'react-icons/md';
 import { FaUserEdit } from 'react-icons/fa';
 
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Form, Input, Select } from '@rocketseat/unform';
@@ -46,13 +46,11 @@ const schema = Yup.object().shape({
 });
 
 const optionsGender = [
-  { id: '1', value: 'M', title: 'Masculinho' },
-  { id: '2', value: 'F', title: 'Feminino' },
+  { id: 'M', title: 'Masculinho' },
+  { id: 'F', title: 'Feminino' },
 ];
 
 export default function ContactEdit({ match }) {
-  /// const [contact, setContact] = useState([]);
-
   useEffect(() => {
     document.title = 'Editar contato';
   }, []);
@@ -61,9 +59,7 @@ export default function ContactEdit({ match }) {
 
   const contacts = JSON.parse(localStorage.getItem('contacts'));
 
-  const contact = contacts.find(c => c.id == id && c );
-
-  console.log('updateContacts: ', contact);
+  const contact = contacts.find(c => c.id == id && c); // eslint-disable-line
 
   /*
   useEffect(() => {
@@ -72,7 +68,26 @@ export default function ContactEdit({ match }) {
   */
 
   function handleSubmit(data) {
-    console.log(data);
+    try {
+      data.avatar = `https://robohash.org/${data.last_name}.png?size=100x100&set=set1`; // eslint-disable-line
+
+      const newData = contacts.map(d => (d.id == id ? { id : parseInt(id), ...data } : d)); // eslint-disable-line
+
+      localStorage.setItem('contacts', JSON.stringify(newData));
+
+      toast.success('Cadastro realizado com sucesso', {
+        position: 'top-center',
+        autoClose: 3000,
+      });
+    } catch (error) {
+      toast.error(
+        'Falha ao atualizar o cadastro, verifique os dados e tente novamente',
+        {
+          position: 'top-center',
+          autoClose: 3000,
+        }
+      );
+    }
   }
 
   return (
@@ -80,7 +95,7 @@ export default function ContactEdit({ match }) {
       <Nav>
         <h1>
           <FaUserEdit color="#1A8E6E" size={22} />
-          Adicionar contato {id}
+          Adicionar contato
         </h1>
 
         <Link to="/" title="Voltar">

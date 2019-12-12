@@ -51,7 +51,7 @@ const optionsGender = [
 ];
 
 export default function ContactEdit({ match }) {
-  const [contact, setContact] = useState([]);
+  /// const [contact, setContact] = useState([]);
 
   useEffect(() => {
     document.title = 'Editar contato';
@@ -61,16 +61,15 @@ export default function ContactEdit({ match }) {
 
   const contacts = JSON.parse(localStorage.getItem('contacts'));
 
-  console.log(contacts);
+  const contact = contacts.find(c => c.id == id && c );
 
-  const getContact = contacts.map(c => (c.id == id ? setContact([c]) : ''));
+  console.log('updateContacts: ', contact);
 
-  console.log(getContact);
-  console.log(contact);
-
+  /*
   useEffect(() => {
     // const contact = JSON.parse(localStorage.getItem('contacts'));
   }, []);
+  */
 
   function handleSubmit(data) {
     console.log(data);
@@ -91,7 +90,7 @@ export default function ContactEdit({ match }) {
       </Nav>
 
       <Section>
-        <Form schema={schema} initialData={contacts} onSubmit={handleSubmit}>
+        <Form schema={schema} initialData={contact} onSubmit={handleSubmit}>
           <Input
             type="text"
             name="first_name"

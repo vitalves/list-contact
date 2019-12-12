@@ -60,10 +60,6 @@ export const Thead = styled.thead`
     font-weight: bold;
     padding: 8px;
     background: #eee;
-
-    & + th {
-      text-align: left;
-    }
   }
 `;
 
@@ -96,6 +92,38 @@ export const Tbody = styled.tbody`
         opacity: 1;
         border: 1px solid #fff;
       }
+    }
+
+    svg {
+      margin-left: 10px;
+    }
+
+    button {
+      background: transparent;
+      color: #1985aa;
+
+      &:hover {
+        color: #d11717;
+      }
+    }
+  }
+`;
+
+export const Delete = styled.span`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  button {
+    margin-bottom: 3px;
+    padding: 3px 0;
+    background: red !important;
+    color: #fff !important;
+    border-radius: 4px;
+
+    & + button {
+      background: transparent !important;
+      color: #444 !important;
     }
   }
 `;

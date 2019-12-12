@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MdContacts, MdPersonAdd, MdPermContactCalendar } from 'react-icons/md';
+import { toast } from 'react-toastify';
+import {
+  MdContacts,
+  MdPersonAdd,
+  MdPermContactCalendar,
+  MdDelete,
+} from 'react-icons/md';
 import { FaUserEdit } from 'react-icons/fa';
 
 import api from '../../services/api';
 
-import { Container, Nav, TableList, Thead, Tbody } from './styles';
+import { Container, Nav, TableList, Thead, Tbody, Delete } from './styles';
 
 export default function Main() {
+  const [contacts, setContacts] = useState([]);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  // const [deleteContact, setDeleteContact] = useState();
+
   useEffect(() => {
     document.title = 'Lista de contatos';
-  }, []);
 
-  const [contacts, setContacts] = useState([]);
-
-  useEffect(() => {
     async function onLoadPage() {
       const contactList = localStorage.getItem('contacts');
 
@@ -33,6 +39,35 @@ export default function Main() {
     }
     onLoadPage();
   }, []);
+
+  function handleDeleteConfirm(id) {
+    setConfirmDelete(id);
+  }
+
+  function handleDeleteContact(id) {
+    try {
+      const updateContacts = contacts.filter(c => c.id !== id);
+
+      localStorage.setItem('contacts', JSON.stringify(updateContacts));
+
+      setContacts(updateContacts);
+      setConfirmDelete(false);
+
+      toast.success('Contato excluido com sucesso', {
+        position: 'top-center',
+        autoClose: 3000,
+      });
+    } catch (error) {
+      toast.error('Ops! Ocorreu um erro inesperado!', {
+        position: 'top-center',
+        autoClose: 3000,
+      });
+    }
+  }
+
+  function handleDeleteContactCancel() {
+    setConfirmDelete(false);
+  }
 
   return (
     <Container>
@@ -87,16 +122,37 @@ export default function Main() {
                   .join('/')}
               </td>
               <td>
-                <Link to={`/contact/edit/${contact.id}`} title="editar contato">
-                  <FaUserEdit size={20} />
-                </Link>
-                <Link
-                  to="/errr"
-                  title="Visualizar contato"
-                  style={{ marginLeft: '15px' }}
-                >
-                  <MdPermContactCalendar size={20} />
-                </Link>
+                {confirmDelete === contact.id ? (
+                  <Delete>
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteContact(contact.id)}
+                    >
+                      Confirmar
+                    </button>
+                    <button type="button" onClick={handleDeleteContactCancel}>
+                      Cancelar
+                    </button>
+                  </Delete>
+                ) : (
+                  <>
+                    <Link
+                      to={`/contact/edit/${contact.id}`}
+                      title="editar contato"
+                    >
+                      <FaUserEdit size={20} />
+                    </Link>
+                    <Link to="/errr" title="Visualizar contato">
+                      <MdPermContactCalendar size={20} />
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteConfirm(contact.id)}
+                    >
+                      <MdDelete size={20} />
+                    </button>
+                  </>
+                )}
               </td>
             </tr>
           ))}

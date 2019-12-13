@@ -8,8 +8,6 @@ import { Form, Input, Select } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import history from '../../../services/history';
 
-// import api from '../../../services/api';
-
 import { Container, Nav, Section } from './styles';
 
 const schema = Yup.object().shape({

@@ -61,12 +61,6 @@ export default function ContactEdit({ match }) {
 
   const contact = contacts.find(c => c.id == id && c); // eslint-disable-line
 
-  /*
-  useEffect(() => {
-    // const contact = JSON.parse(localStorage.getItem('contacts'));
-  }, []);
-  */
-
   function handleSubmit(data) {
     try {
       data.avatar = `https://robohash.org/${data.last_name}.png?size=100x100&set=set1`; // eslint-disable-line
@@ -75,7 +69,7 @@ export default function ContactEdit({ match }) {
 
       localStorage.setItem('contacts', JSON.stringify(newData));
 
-      toast.success('Cadastro realizado com sucesso', {
+      toast.success('Cadastro atualizado com sucesso', {
         position: 'top-center',
         autoClose: 3000,
       });

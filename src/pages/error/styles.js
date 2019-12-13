@@ -4,7 +4,7 @@ export const Container = styled.div`
   max-width: 1000px;
   margin: 30px auto;
   background: #fff;
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - 230px);
   text-align: center;
 
   img {

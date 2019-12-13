@@ -156,8 +156,7 @@ export default function Main() {
 
     setContacts(contactMounthBirthday);
   }
-
-  /* FILTERS */
+  /* end FILTERS */
 
   return (
     <Container>
@@ -266,7 +265,7 @@ export default function Main() {
       )}
 
       <p>
-        {numContactGenderF} mulhere{numContactGenderF > 1 && 's'}
+        {numContactGenderF} mulher{numContactGenderF > 1 && 'es'}
         <span> | </span>
         {numContactGenderM} home{numContactGenderM > 1 ? 'ns' : 'm'}
         <span> | </span>
@@ -332,7 +331,10 @@ export default function Main() {
                     >
                       <FaUserEdit size={20} />
                     </Link>
-                    <Link to="/errr" title="Visualizar contato">
+                    <Link
+                      to={`/contact/view/${contact.id}`}
+                      title="Visualizar contato"
+                    >
                       <MdPermContactCalendar size={20} />
                     </Link>
                     <button

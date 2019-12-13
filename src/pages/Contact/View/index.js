@@ -14,7 +14,7 @@ export default function ContactView({ match }) {
 
   useEffect(() => {
     document.title = `${contact.first_name} ${contact.last_name}`;
-  }, []);
+  }, [contact]);
 
   return (
     <Container>

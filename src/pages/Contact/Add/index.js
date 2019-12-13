@@ -59,7 +59,7 @@ export default function ContactAdd() {
       data.avatar = `https://robohash.org/${data.last_name}.png?size=100x100&set=set1`; // eslint-disable-line
 
       if (contactList) {
-        data.id = Number(contactList.length + 1); // eslint-disable-line
+        data.id = Math.random() * 100; // eslint-disable-line
 
         localStorage.setItem(
           'contacts',
@@ -133,12 +133,7 @@ export default function ContactAdd() {
             id="language"
             placeholder="Informe o idioma"
           />
-          <Input
-            type="date"
-            name="birthday"
-            id="birthday"
-            placeholder="dd/mm/yyyy"
-          />
+          <Input type="date" name="birthday" id="birthday" />
 
           <button type="submit"> Cadastrar </button>
         </Form>

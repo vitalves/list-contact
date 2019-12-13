@@ -5,6 +5,26 @@ export const Container = styled.div`
   margin: 30px auto;
   background: #fff;
   min-height: calc(100vh - 150px);
+
+  p {
+    margin-top: 15px;
+    text-align: center;
+    color: #bbb;
+
+    span {
+      color: #ccc;
+    }
+  }
+
+  h5 {
+    margin: 10px;
+    padding: 20px;
+    background: linear-gradient(45deg, #fff, #eee);
+    color: #aaa;
+    border-radius: 4px;
+    font-size: 22px;
+    text-align: center;
+  }
 `;
 
 export const Nav = styled.nav`
@@ -16,7 +36,15 @@ export const Nav = styled.nav`
     font-size: 22px;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
+
+    small {
+      color: #aaa;
+      font-size: 14px;
+      font-weight: normal;
+      margin-left: 10px;
+      align-self: center;
+    }
 
     svg {
       margin-right: 10px;
@@ -27,6 +55,15 @@ export const Nav = styled.nav`
         opacity: 1;
       }
     }
+  }
+
+  button {
+    background: #ddd;
+    padding: 8px 15px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   a {
@@ -45,6 +82,55 @@ export const Nav = styled.nav`
     &:hover {
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
+  }
+`;
+
+export const Filter = styled.div`
+  max-width: 1000px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  label {
+    color: #999;
+  }
+
+  button {
+    background: rgba(26, 143, 110, 0.1);
+    color: rgb(26, 143, 110);
+    padding: 15px;
+    margin: 15px 5px 0;
+    border-radius: 4px;
+  }
+`;
+
+export const TopButton = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const BottomButton = styled.div`
+  max-width: 1000px;
+  text-align: center;
+
+  button {
+    padding: 10px;
+    background: rgba(26, 143, 110, 0.05);
+    color: rgb(120, 160, 100);
+    display: inline-flex;
+  }
+  input[type='number'] {
+    padding: 15px;
+    margin: 15px 5px 0;
+    border-radius: 4px;
+    padding: 10px;
+    background: rgba(26, 143, 110, 0.05);
+    color: rgb(120, 160, 100);
   }
 `;
 

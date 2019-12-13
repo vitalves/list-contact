@@ -84,11 +84,17 @@ export const Section = styled.section`
     }
   }
 
+  input[type='date'] {
+    flex-direction: row;
+  }
+
   button {
-    /* background: rgb(26, 143, 110); */
     background: linear-gradient(0deg, #1a8e49, #1a8e6e);
     color: #fff;
     font-weight: bolder;
     text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;

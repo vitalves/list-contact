@@ -15,7 +15,8 @@ export const Logo = styled.div`
   align-items: baseline;
 
   img {
-    width: 150px;
+    width: 50px;
+    height: 50px;
     margin: 5px 15px;
   }
   span {
@@ -27,10 +28,10 @@ export const Logo = styled.div`
 
   &::after {
     content: ' ';
-    width: 135px;
+    width: 50px;
     height: 2px;
     background: #eee;
-    margin-left: -220px;
+    margin-left: -130px;
     z-index: 9;
   }
 `;

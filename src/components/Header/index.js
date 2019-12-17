@@ -12,7 +12,7 @@ export default function Header() {
         <Link to="/">
           <img src={logo} alt="logo" title="Página inicial" />
         </Link>
-        <span>Contact</span>
+        <span>Contacts</span>
       </Logo>
     </Container>
   );

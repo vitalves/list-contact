@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <Container>
       <GiSelfLove size={32} color="#309963" />
-      <p>Feito com um pouco de pressa, mas com muito amor e café!</p>
+      <p>Feito com muito amor e café!</p>
       <p>
         <a
           href="https://vitalves.com/"
